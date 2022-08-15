@@ -11,13 +11,6 @@ async function compareHash (text, hash) {
     return compare
 }
 
-// (async () => {
-    
-//     const hash = await getHash('ghosttext')
-
-//     await compareHash('ghosttext', hash)
-// })()
-
 module.exports = {
     getHash,
     compareHash

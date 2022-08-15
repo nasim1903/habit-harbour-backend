@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const { getHash, compareHash } = require('../middleware/hash')
-const createToken = require('../middleware/token')
+const createToken = require('../middleware/createToken')
 // mongoose queries list: https://mongoosejs.com/docs/queries.html
 
 
