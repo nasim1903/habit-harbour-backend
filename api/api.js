@@ -1,10 +1,16 @@
 const express = require('express')
 const api = express()
 const userRoute = require('./routes/user')
+const userController = require('./controllers/user')
 require('dotenv').config()
 
 api.use(express.json())
-api.use('/register', userRoute)
+api.use(express.urlencoded({extended: false}))
+
+api.post('/register', userController.createUser)
+api.post('/login', userController.login)
+
+
 api.use('/dashboard', userRoute)
 
 api.get('/', (req, res) => {

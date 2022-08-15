@@ -8,15 +8,15 @@ async function getHash (text) {
 
 async function compareHash (text, hash) {
     let compare = await bcrypt.compare(text, hash);
-    console.log('compare: ', compare);
+    return compare
 }
 
-(async () => {
+// (async () => {
     
-    const hash = await getHash('ghosttext')
+//     const hash = await getHash('ghosttext')
 
-    await compareHash('ghosttext', hash)
-})()
+//     await compareHash('ghosttext', hash)
+// })()
 
 module.exports = {
     getHash,
