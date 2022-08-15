@@ -13,4 +13,6 @@ async function createToken (userData) {
 
 }
 
-module.exports = createToken;
+module.exports = {
+    createToken
+}
