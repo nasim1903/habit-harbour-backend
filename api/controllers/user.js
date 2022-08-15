@@ -23,21 +23,20 @@ const login = async (req, res) => {
         const username = req.body.username
         const currentUser = await User.find({"username" : username})
 
-        let compare = await compareHash(req.body.password, currentUser[0]['password'])
-        console.log('compare result: ', compare)
-        if(compare) {
-            console.log('Successful login')
+        let authenticated = await compareHash(req.body.password, currentUser[0]['password'])
+        // console.log('compare result: ', compare)
+        if(authenticated) {
+            res.json({
+                message: 'Successfully logged in'
+            })
+            console.log('Successfully logged in')
         } else {
             throw 'Wrong credentials'
         }
-        // const loginHashedPassword = await getHash(req.body.password)
-        // if(loginHashedPassword)
-        // console.log('currentUser: ', currentUser)
-        
-        // const user = await User.create({'username': username, 'password' : hashedPassword})  // const users = User.find({})
-        res.status(200).json({message: 'Successfully logged in'})                // const user = users.filter(user => {})
-    } catch (error) {                       // User.save()
-        res.status(500).json({message: error})
+       
+    } catch (error) {   
+        console.log('Cannot authorise: ', error)                    // User.save()
+        res.status(401).json({message: error})
     }
 
 }
