@@ -11,5 +11,4 @@ api.get('/', (req, res) => {
 })
 
 
-
 module.exports = api;

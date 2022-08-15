@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const userController = require('../controllers/users')
+const userController = require('../controllers/user')
 
 router.post('/', userController.createUser)
 
