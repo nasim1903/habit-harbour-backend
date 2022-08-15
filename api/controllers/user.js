@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const { getHash, compareHash } = require('../middleware/hash')
+const createToken = require('../middleware/token')
 // mongoose queries list: https://mongoosejs.com/docs/queries.html
 
 
@@ -27,7 +28,9 @@ const login = async (req, res) => {
         // console.log('compare result: ', compare)
         if(authenticated) {
             res.json({
-                message: 'Successfully logged in'
+                success: true,
+                message: 'Successfully logged in',
+                token: 'Bearer ' + await createToken(currentUser)
             })
             console.log('Successfully logged in')
         } else {
@@ -36,7 +39,10 @@ const login = async (req, res) => {
        
     } catch (error) {   
         console.log('Cannot authorise: ', error)                    // User.save()
-        res.status(401).json({message: error})
+        res.status(401).json({
+            success: false,
+            message: error
+        })
     }
 
 }
