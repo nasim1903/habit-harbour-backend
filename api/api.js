@@ -12,7 +12,7 @@ api.post('/register', userController.createUser)
 api.post('/login', userController.login)
 
 
-api.use('/dashboard', verifyToken, userRoute)
+api.use('/dashboard', userRoute) //  verifyToken to add as middleware
 
 api.get('/', (req, res) => {
     res.send('Welcome to Habit Harbour')
