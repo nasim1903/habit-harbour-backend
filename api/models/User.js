@@ -7,7 +7,11 @@ const UserSchema = new mongoose.Schema({
         maxLength: [20, 'username length can be max 20 characters'],
         trim: true 
     },
-    password: String,
+    password: {
+        type: String,
+        required: true
+        // length: 60
+    },
     habits: {
         waterStreak: {
             type: Number,
