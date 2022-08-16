@@ -3,7 +3,7 @@
 
 ## Routes
 
-### GET request
+### GET requests
 - `/` - Welcome message
 - `/dashboard` - Returns all users with all information
 - `/dashboard/:username` - Returns one user with all information
