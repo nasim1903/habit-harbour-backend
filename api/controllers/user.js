@@ -60,7 +60,7 @@ const findAll = async (req,res) => {
 
 const findUser = async (req,res) => {
     try {
-        const user = await User.find({"username": req.body.username}).exec();
+        const user = await User.findOne({"username": req.params.username});
         res.status(201).json({user})
 
     } catch (error) {
