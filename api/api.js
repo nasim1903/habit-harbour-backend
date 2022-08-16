@@ -1,29 +1,24 @@
 const express = require('express')
 const api = express()
 const cors = require('cors')
-const userRoute = require('./routes/user')
-const waterRoute = require('./routes/water')
-const exerciseRoute = require('./routes/exercise')
-
+const habitsController = require('./controllers/habits')
 const userController = require('./controllers/user')
-const verifyToken = require('./middleware/verifyToken')
 require('dotenv').config()
 
 api.use(cors())
 api.use(express.json())
 api.use(express.urlencoded({extended: false}))
 
+// All GET requests
+api.get('/', (req, res) => {res.json({message: 'Welcome to Habit Harbour'})})
+api.get('/dashboard', userController.findAll) //  verifyToken to add as middleware
+api.get('/dashboard/:username', userController.findUser) //  verifyToken to add as middleware
+api.get('/dashboard/:username/habits', habitsController.showHabits)
+
+//All POST requests
 api.post('/register', userController.createUser)
 api.post('/login', userController.login)
-
-
-api.use('/dashboard', userRoute) //  verifyToken to add as middleware
-api.use('/dashboard/:username/water', waterRoute)
-api.use('/dashboard/:username/exercise', exerciseRoute)
-
-api.get('/', (req, res) => {
-    res.json({message: 'Welcome to Habit Harbour'})
-})
+api.post('/dashboard/:username/habits', habitsController.updateHabits)
 
 
 module.exports = api;
