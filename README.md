@@ -7,24 +7,32 @@
 - `/` - Welcome message
 - `/dashboard` - Returns all users with all information
 - `/dashboard/:username` - Returns one user with all information
-- `/dashboard/:username/habits` - Returns one user's habits information as a `json`
+- `/dashboard/:username/habits` - Returns one user's habits information
 
 ### POST requests
-- `/register` - user can register. Accepted format: 
+- `/register` - The user can register. Accepted format: 
 ```
 {
-    "username": "admin8",
+    "username" : "admin8",
     "password" : "password8"
 }
 ```
-- `/login` - user can login. Accepted format same as above
-- `/dashboard/:username/habits` - user can add and update habits. Accepted format: 
+- `/login` - The user can log in. Accepted format same as above
+- `/dashboard/:username/habits` - The user can add and update habits. Accepted format: 
 ```
 {
-    "username": "admin3",
+    "username" : "admin3",
     "habit" : "exercise",
     "target" : "60 minutes per day",
     "days" : 4
+}
+```
+- `/dashboard/:username/habits/increment-streak` - When the user clicks on the "Completed" button, the actual habit streak gets incremented by one and the "Completed" button becomes disabled. Accepted format: 
+```
+{
+    "username" : "admin3",
+    "habit" : "exercise",
+    "completed": true
 }
 ```
 

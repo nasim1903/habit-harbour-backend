@@ -19,6 +19,7 @@ api.get('/dashboard/:username/habits', habitsController.showHabits)
 api.post('/register', userController.createUser)
 api.post('/login', userController.login)
 api.post('/dashboard/:username/habits', habitsController.updateHabits)
+api.post('/dashboard/:username/habits/increment-streak', habitsController.incrementStreak)
 
 
 module.exports = api;

@@ -35,8 +35,31 @@ const updateHabits = async (req, res) => {
 
 }
 
+const incrementStreak = async (req, res) => {
+
+    try {
+        const user = await User.findOne({"username": req.params.username});
+        console.log('user in updateHabits func: ', user)
+        if (req.body.habit == 'water') {
+            user.habits.waterStreak += 1
+            user.habits.waterCompleted = true
+        } else if (req.body.habit == 'exercise') {
+            user.habits.exerciseStreak += 1
+            user.habits.exerciseCompleted = true
+        } else {
+            throw 'Cannot find habit'
+        }
+        await user.save()
+        res.json({message: "User completed the target"})
+    } catch (error) {
+        console.log('Cannot update habits for this user')
+        res.status(500).json({error: error})
+    }
+
+}
 
 module.exports = {
     showHabits,
-    updateHabits
+    updateHabits,
+    incrementStreak
 }
