@@ -1,7 +1,6 @@
 const User = require('../models/User')
 const { getHash, compareHash } = require('../middleware/hash')
 const {createToken} = require('../middleware/createToken')
-console.log('Whats createToken: ', createToken);
 // mongoose queries list: https://mongoosejs.com/docs/queries.html
 
 
@@ -62,8 +61,38 @@ const findAll = async (req,res) => {
 const findUser = async (req,res) => {
     try {
         const user = await User.find({"username": req.body.username}).exec();
-        // console.log(user)
+        console.log('user in finduser: ', user)
         res.status(201).json({user})
+
+    } catch (error) {
+        res.status(404).json({message: error})
+    }
+}
+
+const findWaterTarget = async (req,res) => {
+    try {
+        const user = await User.find({"username": req.body.username}).exec();
+        console.log('user in waterTarget: ', user[0])
+        const waterStreakTarget = user[0].habits.waterTarget
+        console.log('waterStreakTarget: ', waterStreakTarget)
+        res.status(201).json({waterTarget: waterStreakTarget})
+
+    } catch (error) {
+        res.status(404).json({message: error})
+    }
+}
+
+const createWaterTarget = async (req,res) => {
+    try {
+        // const user = await User.find({"username": req.body.username}).exec();
+        const query = {username: req.body.username}
+        const updatedUser = await User.findOneAndUpdate(query, {[habits.waterTarget] : 'new waterTarget'});
+        console.log('user info within createwatertarget: ', updatedUser)
+        // const newWaterTarget = await User.
+        // console.log('user in waterTarget: ', user[0])
+        // const waterStreakTarget = user[0].habits.waterTarget
+        // console.log('waterStreakTarget: ', waterStreakTarget)
+        res.status(201).json({success: 'User updated'})
 
     } catch (error) {
         res.status(404).json({message: error})
@@ -74,5 +103,7 @@ module.exports = {
     createUser,
     findUser,
     findAll,
-    login
+    login,
+    findWaterTarget,
+    createWaterTarget
 }

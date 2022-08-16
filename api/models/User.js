@@ -15,12 +15,30 @@ const UserSchema = new mongoose.Schema({
     habits: {
         waterStreak: {
             type: Number,
-            default: 0
+            default: 0,
         },
-        mealStreak: {
+        waterTarget: {
+            type: String,
+            default: 'default water target'
+        }, 
+        waterDays: {
             type: Number,
-            default: 0
-        }
+            default: 1
+        },
+
+        exerciseStreak: {
+            type: Number,
+            default: 0,
+        },
+
+        exerciseTarget: {
+            type: String,
+            default: 'default exercise target'
+        }, 
+        exerciseDays: {
+            type: Number,
+            default: 1
+        },
     }
 })
 

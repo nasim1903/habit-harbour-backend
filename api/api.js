@@ -1,10 +1,12 @@
 const express = require('express')
 const api = express()
+const cors = require('cors')
 const userRoute = require('./routes/user')
 const userController = require('./controllers/user')
 const verifyToken = require('./middleware/verifyToken')
 require('dotenv').config()
 
+api.use(cors())
 api.use(express.json())
 api.use(express.urlencoded({extended: false}))
 
