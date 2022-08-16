@@ -41,20 +41,20 @@ const resetCompleteAtMidnight = (user) => {
     midnight.setMinutes(0);
     midnight.setSeconds(0);
     midnight.setMilliseconds(0);
-    const secondsToMidnight = (midnight.getTime() - new Date().getTime()) / 1000;
+    const milliSecondsToMidnight = midnight.getTime() - new Date().getTime();
 
     setTimeout(() => {
         user.habits.waterCompleted = false;
         user.habits.exerciseCompleted = false;
         user.save()
-    }, secondsToMidnight)
+    }, milliSecondsToMidnight)
+
 }
 
 const incrementStreak = async (req, res) => {
 
     try {
         const user = await User.findOne({"username": req.params.username});
-        console.log('user in updateHabits func: ', user)
         if (req.body.habit == 'water') {
             user.habits.waterStreak += 1
             user.habits.waterCompleted = true
@@ -65,7 +65,9 @@ const incrementStreak = async (req, res) => {
             throw 'Cannot find habit'
         }
         await user.save()
+
         resetCompleteAtMidnight(user)
+
         res.json({message: "User completed the target"})
     } catch (error) {
         console.log('Cannot update habits for this user')
