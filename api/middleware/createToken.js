@@ -5,9 +5,6 @@ async function createToken (userData) {
 
     try {
 
-
-    return token;
-
         const token = await jwt.sign({
             username: userData['username']
         },
