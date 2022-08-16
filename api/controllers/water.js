@@ -1,6 +1,5 @@
 const User = require('../models/User')
 
-
 const createWaterTarget = async (req,res) => {
     try {
         
@@ -15,8 +14,9 @@ const createWaterTarget = async (req,res) => {
 }
 
 const findWaterTarget = async (req,res) => {
+    console.log('Im in findWaterTarget funciton in controller')
     try {
-        const user = await User.find({"username": req.params.username}).exec();
+        const user = await User.findOne({"username": req.params.username});
         console.log('user in waterTarget: ', user)
         const waterStreakTarget = user[0].habits.waterTarget
         console.log('waterStreakTarget: ', waterStreakTarget)

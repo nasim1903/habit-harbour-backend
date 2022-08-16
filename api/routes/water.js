@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const waterController = require('../controllers/water')
 
-router.get('/:username/water/target', waterController.findWaterTarget)
-router.post('/:username/water/target', waterController.createWaterTarget)
-router.get('/:username/water/days', waterController.findWaterDays)
-router.post('/:username/water/days', waterController.createWaterDays)
+router.get('/target', waterController.findWaterTarget)
+router.post('/target', waterController.createWaterTarget)
+router.get('/days', waterController.findWaterDays)
+router.post('/days', waterController.createWaterDays)
 
 module.exports = router
