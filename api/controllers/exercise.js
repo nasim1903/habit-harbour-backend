@@ -26,6 +26,19 @@ const findExerciseTarget = async (req,res) => {
     }
 }
 
+const createExerciseDays = async (req,res) => {
+    try {
+
+        let doc = await User.findOne({username: req.body.username})
+        doc.habits.exerciseDays = req.body.days
+        await doc.save()
+        res.status(201).json({success: 'Exercise frequency tracker updated'})
+
+    } catch (error) {
+        res.status(404).json({message: error})
+    }
+}
+
 const findExerciseDays = async (req,res) => {
     try {
 
@@ -40,22 +53,10 @@ const findExerciseDays = async (req,res) => {
     }
 }
 
-const updateExerciseDays = async (req,res) => {
-    try {
-
-        let doc = await User.findOne({username: req.body.username})
-        doc.habits.exerciseDays = req.body.days
-        await doc.save()
-        res.status(201).json({success: 'Exercise frequency tracker updated'})
-
-    } catch (error) {
-        res.status(404).json({message: error})
-    }
-}
 
 module.exports = {
     createExerciseTarget,
     findExerciseTarget,
     findExerciseDays,
-    updateExerciseDays
+    createExerciseDays
 }
