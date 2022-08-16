@@ -1,4 +1,36 @@
 # habit-harbour-backend
+
+
+## Routes
+
+### GET request
+- `/` - Welcome message
+- `/dashboard` - Returns all users with all information
+- `/dashboard/:username` - Returns one user with all information
+- `/dashboard/:username/water/target` - Returns one user water intake target as a `string`
+- `/dashboard/:username/water/days` - Returns one user's desired frequency for tracking water intake as a `number`
+
+### POST requests
+- `/register` - user can register. Accepted format: {
+                                       "username": "admin8",
+                                       "password" : "password8"
+                                   }
+- `/login` - user can login. Accepted format same as above
+- `/dashboard/:username/water/target` - user can add water intake target. Accepted format: 
+```
+{
+"username": "admin8",
+"target" : "3 litres per day"
+}
+```
+- `/dashboard/:username/water/day` - user can update frequency for tracking it Default value is 1. Accepted format: 
+```
+{
+"username": "admin3",
+"days" : 5
+}
+```
+
 # LAP 2 Portfolio Week Project
 You will be working in small teams to create a habit tracker.
 
