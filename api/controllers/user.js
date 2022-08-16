@@ -94,11 +94,40 @@ const createWaterTarget = async (req,res) => {
     }
 }
 
+const findWaterDays = async (req,res) => {
+    try {
+        
+        const user = await User.findOne({"username": req.params.username});
+       
+        const waterFrequency = user.habits.waterDays
+       
+        res.status(200).json({waterDays: waterFrequency})
+
+    } catch (error) {
+        res.status(404).json({message: error})
+    }
+}
+
+const updateWaterDays = async (req,res) => {
+    try {
+        
+        let doc = await User.findOne({username: req.body.username})
+        doc.habits.waterDays = req.body.days
+        await doc.save()
+        res.status(201).json({success: 'Water frequency tracker updated'})
+
+    } catch (error) {
+        res.status(404).json({message: error})
+    }
+}
+
 module.exports = {
     createUser,
     findUser,
     findAll,
     login,
     findWaterTarget,
-    createWaterTarget
+    createWaterTarget,
+    findWaterDays,
+    updateWaterDays
 }
