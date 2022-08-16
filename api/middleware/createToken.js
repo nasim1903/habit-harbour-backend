@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+// console.log('whats jwt: ', jwt)
 
 async function createToken (userData) {
 
@@ -8,6 +9,7 @@ async function createToken (userData) {
         process.env['SECRET_PASSWORD'],
         { expiresIn: 60 * 60}
     )
+
 
     return token;
 

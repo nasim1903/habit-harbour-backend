@@ -2,7 +2,7 @@ const server = require('./api')
 const connectDB = require('../db/connect')
 require('dotenv').config()
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
 const startDatabaseAndServer = async () => {
     

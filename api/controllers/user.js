@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const { getHash, compareHash } = require('../middleware/hash')
-const createToken = require('../middleware/createToken')
+const {createToken} = require('../middleware/createToken')
+console.log('Whats createToken: ', createToken);
 // mongoose queries list: https://mongoosejs.com/docs/queries.html
 
 
@@ -9,7 +10,6 @@ const createUser = async (req, res) => {
     try {
         const username = req.body.username
         const hashedPassword = await getHash(req.body.password)
-        // const password = 
         const user = await User.create({'username': username, 'password' : hashedPassword})  // const users = User.find({})
         res.status(201).json({username: username,  message: 'User created'})                // const user = users.filter(user => {})
     } catch (error) {                       // User.save()
@@ -27,6 +27,7 @@ const login = async (req, res) => {
         let authenticated = await compareHash(req.body.password, currentUser[0]['password'])
         // console.log('compare result: ', compare)
         if(authenticated) {
+        
             res.json({
                 success: true,
                 message: 'Successfully logged in',
