@@ -17,7 +17,7 @@ api.post('/login', userController.login)
 api.use('/dashboard', userRoute) //  verifyToken to add as middleware
 
 api.get('/', (req, res) => {
-    res.send('Welcome to Habit Harbour')
+    res.json({message: 'Welcome to Habit Harbour'})
 })
 
 
