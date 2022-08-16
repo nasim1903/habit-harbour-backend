@@ -35,6 +35,13 @@ const updateHabits = async (req, res) => {
 
 }
 
+const delayedCompleteReset = (user) => {
+    setTimeout(() => {
+        user.habits.waterCompleted = false;
+        user.save()
+    }, 30000)
+}
+
 const incrementStreak = async (req, res) => {
 
     try {
@@ -43,6 +50,7 @@ const incrementStreak = async (req, res) => {
         if (req.body.habit == 'water') {
             user.habits.waterStreak += 1
             user.habits.waterCompleted = true
+            delayedCompleteReset(user)
         } else if (req.body.habit == 'exercise') {
             user.habits.exerciseStreak += 1
             user.habits.exerciseCompleted = true
