@@ -32,14 +32,22 @@ const updateHabits = async (req, res) => {
         console.log('Cannot update habits for this user')
         res.status(500).json({error: error})
     }
-
 }
 
-const delayedCompleteReset = (user) => {
+const resetCompleteAtMidnight = (user) => {
+
+    let midnight = new Date();
+    midnight.setHours(24);
+    midnight.setMinutes(0);
+    midnight.setSeconds(0);
+    midnight.setMilliseconds(0);
+    const secondsToMidnight = (midnight.getTime() - new Date().getTime()) / 1000;
+
     setTimeout(() => {
         user.habits.waterCompleted = false;
+        user.habits.exerciseCompleted = false;
         user.save()
-    }, 30000)
+    }, secondsToMidnight)
 }
 
 const incrementStreak = async (req, res) => {
@@ -50,7 +58,6 @@ const incrementStreak = async (req, res) => {
         if (req.body.habit == 'water') {
             user.habits.waterStreak += 1
             user.habits.waterCompleted = true
-            delayedCompleteReset(user)
         } else if (req.body.habit == 'exercise') {
             user.habits.exerciseStreak += 1
             user.habits.exerciseCompleted = true
@@ -58,6 +65,7 @@ const incrementStreak = async (req, res) => {
             throw 'Cannot find habit'
         }
         await user.save()
+        resetCompleteAtMidnight(user)
         res.json({message: "User completed the target"})
     } catch (error) {
         console.log('Cannot update habits for this user')
