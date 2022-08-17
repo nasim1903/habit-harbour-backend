@@ -4,10 +4,10 @@ require('dotenv').config()
 
 describe('Create Token test', () => {
 
-    let mockUserData = {
-        "username": "admin999",
-        "password" : "password888"
-    }
+    let mockUserData = [{"username": "admin999",
+    "password" : "password888"}]
+        
+    
 
     it('it creates a token', async () => {
         const response = await createToken(mockUserData)

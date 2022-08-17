@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken')
 
 async function createToken (userData) {
 
-        console.log(userData)
+    
         const currentUsername = await userData
         const token = await jwt.sign({
-            username: currentUsername.username
+            username: currentUsername[0].username
         },
             process.env['SECRET_PASSWORD'],
             { expiresIn: 60 * 60}
