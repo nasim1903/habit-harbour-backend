@@ -16,7 +16,6 @@ const updateHabits = async (req, res) => {
 
     try {
         const user = await User.findOne({"username": req.params.username});
-        console.log('user in updateHabits func: ', user)
         if (req.body.habit == 'water') {
             user.habits.waterTarget = req.body.target
             user.habits.waterDays = req.body.days
@@ -54,6 +53,7 @@ const resetCompleteAtMidnight = (user) => {
 const incrementStreak = async (req, res) => {
 
     try {
+        console.log('req.body looks like when click complete button in incrementStreak func: ', req.body)
         const user = await User.findOne({"username": req.params.username});
         if (req.body.habit == 'water') {
             user.habits.waterStreak += 1
@@ -66,7 +66,7 @@ const incrementStreak = async (req, res) => {
         }
         await user.save()
 
-        resetCompleteAtMidnight(user)
+        // resetCompleteAtMidnight(user)
 
         res.json({message: "User completed the target"})
     } catch (error) {

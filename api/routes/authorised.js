@@ -7,7 +7,7 @@ const verifyToken = require('../middleware/verifyToken')
 
 router.get('/', userController.findAll) 
 router.get('/:username', userController.findUser) 
-router.get('/dashboard/:username/habits', habitsController.showHabits) 
+router.get('/:username/habits', habitsController.showHabits) 
 
 router.post('/:username/habits', habitsController.updateHabits)
 router.post('/:username/habits/increment-streak', habitsController.incrementStreak)

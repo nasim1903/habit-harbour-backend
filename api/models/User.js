@@ -10,7 +10,6 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-        // length: 60
     },
     habits: {
         waterStreak: {
@@ -19,7 +18,7 @@ const UserSchema = new mongoose.Schema({
         },
         waterTarget: {
             type: String,
-            default: 'default water target'
+            default: ''
         }, 
         waterDays: {
             type: Number,
@@ -36,7 +35,7 @@ const UserSchema = new mongoose.Schema({
 
         exerciseTarget: {
             type: String,
-            default: 'default exercise target'
+            default: ''
         }, 
         exerciseDays: {
             type: Number,
@@ -48,7 +47,5 @@ const UserSchema = new mongoose.Schema({
         }
     }
 })
-
-
 
 module.exports = mongoose.model('User', UserSchema)
