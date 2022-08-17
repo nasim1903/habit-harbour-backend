@@ -90,6 +90,11 @@ describe('User controllers', () => {
         expect(response.body.message).toStrictEqual({});
         expect(response.statusCode).toEqual(500)
     })
+
+    it("it checks if it shows a user habit", async () => {
+        const response = await supertest(api).get('/dashboard/admin2/habits')  
+            expect(response.statusCode).toEqual(200) 
+    })
     
 
 })
