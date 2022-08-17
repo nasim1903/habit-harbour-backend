@@ -40,20 +40,19 @@ const resetCompleteAtMidnight = (user) => {
     midnight.setMinutes(0);
     midnight.setSeconds(0);
     midnight.setMilliseconds(0);
-    const milliSecondsToMidnight = midnight.getTime() - new Date().getTime();
+    const millisecondsToMidnight = midnight.getTime() - new Date().getTime();
 
     setTimeout(() => {
         user.habits.waterCompleted = false;
         user.habits.exerciseCompleted = false;
         user.save()
-    }, milliSecondsToMidnight)
+    }, millisecondsToMidnight)
 
 }
 
 const incrementStreak = async (req, res) => {
 
     try {
-        console.log('req.body looks like when click complete button in incrementStreak func: ', req.body)
         const user = await User.findOne({"username": req.params.username});
         if (req.body.habit == 'water') {
             user.habits.waterStreak += 1
