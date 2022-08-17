@@ -1,6 +1,7 @@
 const supertest = require('supertest')
 const app = require('../../../api/api')
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 describe('User controllers', () => {
     let api;
@@ -27,6 +28,11 @@ describe('User controllers', () => {
         supertest(api).get('/dashboard').expect((res) => {
             expect(res.status).toBe(200)
         })
+    })
+
+    it("it checks if it gets one users", async () => {
+        const response = await supertest(api).get('/dashboard/admin2')  
+            expect(response.statusCode).toEqual(201)
     })
     
     it("it checks a sample credential is correct", async () =>{
@@ -68,10 +74,21 @@ describe('User controllers', () => {
 
         expect(response.headers["content-type"]).toMatch(/json/);
         expect(response.body.username).toBeDefined();
-
         expect(response.body.message).toBeDefined();
-
         expect(response.statusCode).toEqual(201)
+    })
+
+    it('It checks a sample register is false', async () => {
+        const response = await supertest(api).post('/register')
+            .send({
+                "username": "adminFalse",
+                "password": false
+            })
+            .set('Accept', 'application/json');
+
+        expect(response.headers["content-type"]).toMatch(/json/);
+        expect(response.body.message).toStrictEqual({});
+        expect(response.statusCode).toEqual(500)
     })
     
 

@@ -33,19 +33,6 @@ describe("API", () => {
       supertest(api).get("/dashboard").expect(200, done);
     });
 
-    // it("Responds to a GET request at '/posts' with a json object", (done) => {
-    //   supertest(api).get("/posts").expect("Content-Type", /json/, done);
-    // });
 
-    // it("Responds to a Get request at '/comments' with a 201 status", (done) => {
-    //   supertest(api).get("/comments").expect(200, done);
-    // });
-
-    // it("Responds to a GET request at '/comments' with a json object", () => {
-    //   supertest(api).get("/comments").expect( (res) => {
-    //     expect(res.status).toBe(200)
-    //     expect(res.type).toBe('application/json')
-    //   });
-    // });
   });
 })
