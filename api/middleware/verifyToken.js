@@ -11,18 +11,6 @@ function verifyToken(req, res, next) {
 
         const token = header.split(' ')[1];
 
-        // jwt.verify(token, process.env['SECRET_PASSWORD'], (err, decoded) => {
-        //     if (err) {
-        //         console.log('Token verification failed')
-        //         res.status(401).json({
-        //             success: false,
-        //             message: 'Token verification failed: ', error
-        //         })
-        //     } else {
-        //         next();
-        //     }
-        // })
-
         jwt.verify(token, process.env['SECRET_PASSWORD'])
             .then(() => next())
             .catch(error => {

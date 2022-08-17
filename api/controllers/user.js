@@ -1,7 +1,6 @@
 const User = require('../models/User')
 const { getHash, compareHash } = require('../middleware/hash')
 const {createToken} = require('../middleware/createToken')
-// mongoose queries list: https://mongoosejs.com/docs/queries.html
 
 
 const createUser = async (req, res) => {
@@ -24,7 +23,6 @@ const login = async (req, res) => {
         const currentUser = await User.find({"username" : username})
 
         let authenticated = await compareHash(req.body.password, currentUser[0]['password'])
-        // console.log('compare result: ', compare)
         if(authenticated) {
         
             res.json({
@@ -50,7 +48,6 @@ const login = async (req, res) => {
 const findAll = async (req,res) => {
     try {
         const users = await User.find({});
-        // console.log(users)
         res.status(200).json({users})
 
     } catch (error) {

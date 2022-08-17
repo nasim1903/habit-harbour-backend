@@ -16,7 +16,6 @@ const updateHabits = async (req, res) => {
 
     try {
         const user = await User.findOne({"username": req.params.username});
-        console.log('user in updateHabits func: ', user)
         if (req.body.habit == 'water') {
             user.habits.waterTarget = req.body.target
             user.habits.waterDays = req.body.days
