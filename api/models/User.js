@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
         },
         waterTarget: {
             type: String,
-            default: 'default water target'
+            default: ''
         }, 
         waterDays: {
             type: Number,
@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
 
         exerciseTarget: {
             type: String,
-            default: 'default exercise target'
+            default: ''
         }, 
         exerciseDays: {
             type: Number,
