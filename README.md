@@ -1,24 +1,45 @@
-# habit-harbour-backend
+# Habit Harbour - backend
 
+## Installation & Usage
+
+### Installation
+
+Installation is not required as this app has been deployed. If you'd like to use this app, please click [here](https://habit-harbour.netlify.app/).
+If you want to have a closer look at the backend structure, please follow the next steps:
+
+- Clone the repo and enter the root directory `cd habit-harbour-backend`
+
+### Usage
+
+Please note that you cannot use the app on your local machine as it needs environment variables.
 
 ## Routes
 
+All routes starting with `/dashboard` are accessible for logged-in users only.
+
 ### GET requests
+
 - `/` - Welcome message
-- `/dashboard` - Returns all users with all information
+
+- `/dashboard` - Returns all users with all information (For testing purposes only)
+
 - `/dashboard/:username` - Returns one user with all information
+
 - `/dashboard/:username/habits` - Returns one user's habits information
 
 ### POST requests
-- `/register` - The user can register. Accepted format: 
+- `/register` - The user can register.
+<!-- Accepted `req.body` format: 
 ```
 {
     "username" : "admin8",
     "password" : "password8"
 }
-```
-- `/login` - The user can log in. Accepted format same as above
-- `/dashboard/:username/habits` - The user can add and update habits. Accepted format: 
+``` -->
+- `/login` - The user can log in. 
+<!-- Accepted format same as above -->
+- `/dashboard/:username/habits` - The user can add and update habits.
+<!-- Accepted format: 
 ```
 {
     "username" : "admin3",
@@ -26,52 +47,36 @@
     "target" : "60 minutes per day",
     "days" : 4
 }
-```
-- `/dashboard/:username/habits/increment-streak` - When the user clicks on the "Completed" button, the actual habit streak gets incremented by one and the "Completed" button becomes disabled. Accepted format: 
+``` -->
+- `/dashboard/:username/habits/increment-streak` - When the user clicks on the "Target completed!" button, the actual habit streak gets incremented by one and the "Completed" button becomes disabled.
+<!-- Accepted format: 
 ```
 {
     "username" : "admin3",
     "habit" : "exercise",
     "completed": true
 }
-```
+``` -->
 
-# LAP 2 Portfolio Week Project
-You will be working in small teams to create a habit tracker.
+## Tests
 
-## Requirements
-#### Your website should have the following functionality for users:
-- Users should be able to login
-- Users should be able to choose a habit they want to track (e.g water, exercise, 8 hours of sleep) and choose the frequency at which they want to track the habit
-- Users should be able to track a habit and mark it as complete for the day
-- Users should be able to see if they have completed a habit for the day and see their most recent completion streak
+- [Jest](https://jestjs.io/) and [Supertest](https://www.npmjs.com/package/supertest) used for testing
+- Run `npm run test` 
+- Run `npm run cov` for coverage
 
-#### Your project should meet the following technical requirements:
-- Data should be persisted in a database
-- Minimum 60% test coverage with an aim of 80%
-- Your codebase should primarily feature the technologies we have covered so far on the course
+## Wins and Challenges
 
-## Presentation
-- Prepare a 10 minute presentation covering the following topics:
-    - Purpose of App
-    - Planning & Delivery
-    - Technologies and Code
-    - Challenges and Solutions
-    - Significant Code / Code you are proud of (include snippets!)
-    - Test Coverage
-    - Future Features & What We've Learned 
-    - Live Demonstration
-- There will be a 5 minute opportunity for Q&A after each presentation
+### Wins
 
-***See our [Presentation Guide](https://gist.github.com/getfutureproof-admin/8858ae4a2e9ef624422b0ed502d9332d) for tips*** 
+- Fully functional app
+- Smooth data flow from frontend to database and vice versa
+- Decent test coverage
+- Deployed to [Heroku](https://heroku.com)
+- Database stored at [MongoDB Atlas](https://www.mongodb.com/atlas/database)
 
-## Timeline
-- Monday - Wednesday: Focus on functionality and features.
-- Wednesday 6pm: Feature freeze.
-This means that no new feature can be started. Existing features can be finished, refactored or fixed.
-- Thursday: Designated for debugging, styling, extending test coverage.
-- Friday: All code to be halted. Merge to master by midday and prepare for presentations. All teams will have small-group retro with an instructor during the day so make sure to manage your presentation prep time around this.
-- Friday 3PM: Presentations
+### Challenges
 
-## Code of Conduct
-- See our [projects guide](https://gist.github.com/getfutureproof-admin/fbbefeccf62cb3e120adae8d20a2ac56)
+- Setup MongoDB Atlas
+- Handling NoSQL data format  
+- Make 'Target completed!' button work appropriately.
+- Match the flowing data format between frontend and backend
